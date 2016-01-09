@@ -1,9 +1,11 @@
 /* stuff that won't change */
 const int redLight = 4;
 const int whiteLight = 3;
-const int button = 9;
+const int button = 8;
 const int trigger = 13;
 const int echo = 12;
+
+int buttonState = 0;
 
 void setup() {
   // put your setup code here, to run once:
@@ -19,7 +21,6 @@ void setup() {
 }
 
 void loop() {
-    int buttonState = 0; // pushbutton state
     // stuff that I don't want to bother with - for UV dude  
     long duration, distance;
     digitalWrite(trigger, LOW);  
@@ -50,12 +51,13 @@ void loop() {
   // button push logic
   // read the state of the pushbutton value:
   buttonState = digitalRead(button);
+  Serial.println(buttonState);
   // check if the pushbutton is pressed.
   // if it is, the buttonState is HIGH:
   if (buttonState == HIGH) {
-    digitalWrite(whiteLight, HIGH);
-  } else {
     digitalWrite(whiteLight, LOW);
+  } else {
+    digitalWrite(whiteLight, HIGH);
   }
 
 }
