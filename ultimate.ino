@@ -1,5 +1,5 @@
 /* stuff that won't change */
-const int redLight = 8;
+const int redLight = 4;
 const int trigger = 13;
 const int echo = 12;
 
@@ -10,7 +10,6 @@ void setup() {
   pinMode(trigger, OUTPUT);
   pinMode(echo, INPUT);
   pinMode(redLight, OUTPUT);
-
 }
 
 void loop() {
@@ -24,9 +23,12 @@ void loop() {
     duration = pulseIn(echo, HIGH);
     distance = (duration / 2) / 29.1;
 
-    if (distance < 10) { 
+    if (distance < 5) { 
       digitalWrite(redLight, HIGH); 
       // # TODO beep here
+    }
+    else{
+      digitalWrite(redLight, LOW);
     }
     if (distance >= 200 || distance <= 0) {
       Serial.println("Out of range");
