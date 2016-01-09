@@ -1,5 +1,7 @@
 /* stuff that won't change */
 const int redLight = 4;
+const int whiteLight = 3;
+const int button = 9;
 const int trigger = 13;
 const int echo = 12;
 
@@ -10,9 +12,14 @@ void setup() {
   pinMode(trigger, OUTPUT);
   pinMode(echo, INPUT);
   pinMode(redLight, OUTPUT);
+
+  // alert dude
+  pinMode(button, INPUT);
+  pinMode(whiteLight, OUTPUT);
 }
 
 void loop() {
+    int buttonState = 0; // pushbutton state
     // stuff that I don't want to bother with - for UV dude  
     long duration, distance;
     digitalWrite(trigger, LOW);  
@@ -38,5 +45,17 @@ void loop() {
       Serial.println(" cm");
     }
   delay(500);
+
+
+  // button push logic
+  // read the state of the pushbutton value:
+  buttonState = digitalRead(button);
+  // check if the pushbutton is pressed.
+  // if it is, the buttonState is HIGH:
+  if (buttonState == HIGH) {
+    digitalWrite(whiteLight, HIGH);
+  } else {
+    digitalWrite(whiteLight, LOW);
+  }
 
 }
